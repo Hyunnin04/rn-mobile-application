@@ -1,21 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { StatusBar, StyleSheet, View } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AppNavigator from './src/navigation/AppNavigator';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const queryClient = new QueryClient();
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <PaperProvider>
+        <View style={styles.container}>
+          <StatusBar barStyle="dark-content" />
+          <AppNavigator />
+        </View>
+      </PaperProvider>
+    </QueryClientProvider>
   );
 }
 
