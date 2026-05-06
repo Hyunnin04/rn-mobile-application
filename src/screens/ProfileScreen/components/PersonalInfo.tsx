@@ -10,9 +10,9 @@ interface PersonalInfoProps {
 }
 
 export const PersonalInfo: React.FC<PersonalInfoProps> = ({
-  firstName,
-  lastName,
-  email,
+  firstName = '',
+  lastName = '',
+  email = '',
 }) => {
   return (
     <>
@@ -22,17 +22,23 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({
         <View style={styles.row}>
           <TextInput
             label="First Name"
-            value={firstName}
+            value={firstName || 'N/A'}
             editable={false}
-            mode="flat"
+            mode="outlined"
+            outlineColor="#f0f0f0"
+            activeOutlineColor="#00bcd4"
             style={styles.input}
+            contentStyle={{ fontSize: 16 }}
           />
           <TextInput
             label="Last Name"
-            value={lastName}
+            value={lastName || 'N/A'}
             editable={false}
-            mode="flat"
+            mode="outlined"
+            outlineColor="#f0f0f0"
+            activeOutlineColor="#00bcd4"
             style={styles.input}
+            contentStyle={{ fontSize: 16 }}
           />
         </View>
       </View>
@@ -41,11 +47,13 @@ export const PersonalInfo: React.FC<PersonalInfoProps> = ({
       <View style={styles.section}>
         <TextInput
           label="Email"
-          value={email}
+          value={email || 'N/A'}
           editable={false}
-          mode="flat"
-          left={<TextInput.Icon icon="email" />}
+          mode="outlined"
+          outlineColor="#f0f0f0"
+          activeOutlineColor="#00bcd4"
           style={styles.input}
+          contentStyle={{ fontSize: 16 }}
         />
       </View>
     </>

@@ -28,10 +28,14 @@ export const EmailForm: React.FC<EmailFormProps> = ({
         value={email}
         onChangeText={onEmailChange}
         placeholder="Enter your email"
-        mode="flat"
-        left={<TextInput.Icon icon="email" />}
+        mode="outlined"
+        outlineColor="#f0f0f0"
+        activeOutlineColor="#00bcd4"
+        left={<TextInput.Affix text="✉️ " />}
         style={styles.input}
+        contentStyle={{ fontSize: 16 }}
         editable={!isLoading}
+        keyboardType="email-address"
       />
       <TextInput
         label="Password"
@@ -39,15 +43,18 @@ export const EmailForm: React.FC<EmailFormProps> = ({
         onChangeText={onPasswordChange}
         placeholder="Enter your password"
         secureTextEntry={!showPassword}
-        mode="flat"
-        left={<TextInput.Icon icon="lock" />}
+        mode="outlined"
+        outlineColor="#f0f0f0"
+        activeOutlineColor="#00bcd4"
+        left={<TextInput.Affix text="🔒 " />}
         right={
-          <TextInput.Icon
-            icon={showPassword ? 'eye-off' : 'eye'}
+          <TextInput.Affix
+            text={showPassword ? '👁️' : ''}
             onPress={onTogglePasswordVisibility}
           />
         }
         style={styles.input}
+        contentStyle={{ fontSize: 16 }}
         editable={!isLoading}
       />
     </>

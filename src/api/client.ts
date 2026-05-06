@@ -13,9 +13,19 @@ const client = axios.create({
 client.interceptors.request.use(
   async config => {
     try {
-      const token = await AsyncStorage.getItem('authToken');
+      const token = await AsyncStorage.getItem('auth_token');
+      console.log(
+        'Interceptor - Token from storage:',
+        token ? '✓ Found' : '✗ Not found',
+      );
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
+        console.log(
+          'Authorization header set:',
+          `Bearer ${token.substring(0, 20)}...`,
+        );
+      } else {
+        console.log('No token found in AsyncStorage');
       }
     } catch (error) {
       console.error('Error reading auth token from AsyncStorage:', error);

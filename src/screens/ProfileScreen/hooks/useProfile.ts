@@ -10,9 +10,17 @@ export const useProfile = () => {
   } = useQuery<UserProfile>({
     queryKey: ['me'],
     queryFn: async () => {
-      const response = await fetchMe();
-      return response as UserProfile;
+      try {
+        console.log('Fetching user profile...');
+        const response = await fetchMe();
+        console.log('Profile fetch successful:', response);
+        return response as UserProfile;
+      } catch (err: any) {
+        console.error('Profile fetch failed:', err.message);
+        throw err;
+      }
     },
+    retry: 1,
   });
 
   return {

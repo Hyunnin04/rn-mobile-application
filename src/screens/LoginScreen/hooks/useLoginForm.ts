@@ -17,26 +17,34 @@ export const useLoginForm = () => {
   const emailMutation = useMutation({
     mutationFn: () => loginWithEmail(email, password),
     onSuccess: (token: string) => {
+      console.log('Login successful, token:', token);
       saveToken(token);
       setErrorMessage('');
-      navigation.navigate('Profile');
+      // Add a small delay to ensure token is saved before navigating
+      setTimeout(() => {
+        navigation.navigate('Profile');
+      }, 500);
     },
     onError: (error: any) => {
-      setErrorMessage('Login failed. Please check your email and password.');
       console.error('Email login error:', error);
+      setErrorMessage('Login failed. Please check your email and password.');
     },
   });
 
   const phoneMutation = useMutation({
     mutationFn: () => loginWithPhone('+855', phone, password),
     onSuccess: (token: string) => {
+      console.log('Login successful, token:', token);
       saveToken(token);
       setErrorMessage('');
-      navigation.navigate('Profile');
+      // Add a small delay to ensure token is saved before navigating
+      setTimeout(() => {
+        navigation.navigate('Profile');
+      }, 500);
     },
     onError: (error: any) => {
-      setErrorMessage('Login failed. Please check your phone and password.');
       console.error('Phone login error:', error);
+      setErrorMessage('Login failed. Please check your phone and password.');
     },
   });
 
@@ -46,12 +54,14 @@ export const useLoginForm = () => {
         setErrorMessage('Please fill in all fields');
         return;
       }
+      console.log('Attempting email login with:', email);
       emailMutation.mutate();
     } else {
       if (!phone || !password) {
         setErrorMessage('Please fill in all fields');
         return;
       }
+      console.log('Attempting phone login with:', phone);
       phoneMutation.mutate();
     }
   };

@@ -28,10 +28,14 @@ export const PhoneForm: React.FC<PhoneFormProps> = ({
         value={phone}
         onChangeText={onPhoneChange}
         placeholder="Enter your phone number"
-        mode="flat"
+        mode="outlined"
+        outlineColor="#f0f0f0"
+        activeOutlineColor="#00bcd4"
         left={<TextInput.Affix text="🇰🇭 +855 " />}
         style={styles.input}
+        contentStyle={{ fontSize: 16 }}
         editable={!isLoading}
+        keyboardType="phone-pad"
       />
       <TextInput
         label="Password"
@@ -39,15 +43,17 @@ export const PhoneForm: React.FC<PhoneFormProps> = ({
         onChangeText={onPasswordChange}
         placeholder="Enter your password"
         secureTextEntry={!showPassword}
-        mode="flat"
-        left={<TextInput.Icon icon="lock" />}
+        mode="outlined"
+        outlineColor="#f0f0f0"
+        activeOutlineColor="#00bcd4"
+        left={<TextInput.Affix text="🔒 " />}
         right={
-          <TextInput.Icon
-            icon={showPassword ? 'eye-off' : 'eye'}
+          <TextInput.Affix
             onPress={onTogglePasswordVisibility}
           />
         }
         style={styles.input}
+        contentStyle={{ fontSize: 16 }}
         editable={!isLoading}
       />
     </>
